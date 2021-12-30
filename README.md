@@ -31,6 +31,21 @@ func main() {
 }
 ```
 
+> Typing
+
+Note that you can specify the type of a variable using the type, or the 'syntactic sugar' `:=`, as following
+
+``` go
+var untyped = "i'm untyped"
+
+// default way
+var typed int = 35
+
+// You can let Go to put the type un autommatic manner using :=
+// Note that automatic types doesn't work with constants
+autoTyped := 56
+```
+
 ## Compiling
 
 To compile and run a Go application you just need to type

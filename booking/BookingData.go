@@ -1,4 +1,4 @@
-package helpers
+package booking
 
 /** Defining a Structure */
 type BookingData struct {

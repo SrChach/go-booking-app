@@ -1,4 +1,4 @@
-package helpers
+package booking
 
 /** Constants */
 const AVAILABLE_TICKETS uint = 50

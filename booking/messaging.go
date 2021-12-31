@@ -1,4 +1,4 @@
-package helpers
+package booking
 
 import "fmt"
 

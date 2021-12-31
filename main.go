@@ -1,33 +1,21 @@
 package main
 
-import "fmt"
-
-func getClientName() string {
-	var clientName string
-	fmt.Println("Please enter your name")
-	fmt.Scan(&clientName)
-
-	return clientName
-}
-
-func getNumberOfTickets() int {
-	var ticketsNumber int
-
-	fmt.Println("Please enter the number of tickets you want")
-	fmt.Scan(&ticketsNumber)
-
-	return ticketsNumber
-}
+import (
+	"fmt"
+	"go-booking-app/helpers"
+)
 
 func main() {
 	/** Constants */
-	const totalTickets = 50
+	totalTickets := helpers.AVAILABLE_TICKETS
 
 	/** Variables */
 	var conferenceName string = "My Conference"
 
 	/** Self typed variables */
 	remainingTickets := 50
+
+	var bookings = []string{}
 
 	/** You can also print the Type of a variable
 	  fmt.Printf(
@@ -36,14 +24,22 @@ func main() {
 	  )
 	*/
 
-	fmt.Printf("Welcome to the %s booking application\n", conferenceName)
-	fmt.Printf(
-		"You can book tickets here. %d of %v tickets remaining\n",
-		remainingTickets, totalTickets,
-	)
+	for {
+		fmt.Printf("Welcome to the %s booking application\n", conferenceName)
+		fmt.Printf(
+			"You can book tickets here. %d of %v tickets remaining\n",
+			remainingTickets, totalTickets,
+		)
 
-	var clientName string = getClientName()
-	var ticketsNumber int = getNumberOfTickets()
+		clientName, clientLastName, ticketsNumber := helpers.GetUserBookingData()
 
-	fmt.Printf("The client %s has reserved %d tickets\n", clientName, ticketsNumber)
+		fmt.Printf(
+			"The client %s %s has reserved %d tickets\n",
+			clientName, clientLastName, ticketsNumber,
+		)
+
+		bookings = append(bookings, clientName)
+		fmt.Printf("Total bookings %v\n", bookings)
+	}
+
 }

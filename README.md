@@ -46,6 +46,13 @@ var typed int = 35
 autoTyped := 56
 ```
 
+## Using arrays
+
+``` go
+const ARRAY_SIZE = 50
+var arrayExample [ARRAY_SIZE]string 
+```
+
 ## Compiling
 
 To compile and run a Go application you just need to type
@@ -53,3 +60,56 @@ To compile and run a Go application you just need to type
 ``` bash
 go run <FILE-NAME>
 ```
+
+## Packages
+
+To create and manage packages inside our package, we'll need the `go.mod` file created with the `go mod init <MODULE-NAME>` command.
+
+In that file, we have defined the `MODULE-NAME`.
+
+If we want to create a new package, we can create a new folder, and put inside the line
+
+``` go
+// package <NEW-PACKAGE-NAME>
+package random-package-name
+```
+
+And then, for using it inside other modules, import it as follows
+
+``` go
+// import "<MODULE-NAME>/<NEW-PACKAGE-NAME>"
+import "some-package/random-package-name"
+```
+
+### Exporting
+
+To export something from a package, al we need to do is `make Capital` the first letter of the desired export (constant, variable, function).
+
+Example
+
+``` go
+package random-package-name
+
+// Unexported function
+func greet() {
+	print("holis")
+}
+
+// Exported function. Can be used inside other packages
+func ExportMe() bool {
+	amIExported := true
+
+	return amIExported
+}
+```
+
+### Usage
+
+To use a package element, just import the package and use the function with the syntax `packageName.ElementName`, as follows
+
+``` go
+import "some-package/random-package-name"
+
+random-package-name.ExportMe()
+```
+

@@ -1,6 +1,9 @@
 package helpers
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func GetInputString(inputMessage string) string {
 	var inputString string
@@ -30,4 +33,32 @@ func GetNumberOfTickets() uint {
 /** Multiple Returns are allowed in Go! */
 func GetUserBookingData() (string, string, uint) {
 	return GetClientName(), GetClientLastName(), GetNumberOfTickets()
+}
+
+/** Using a Map to store data */
+func CreateBookingMap() map[string]string {
+	clientName, clientLastName, numberOfTickets := GetUserBookingData()
+	/** Making a Map
+	make(map[string]string)
+	*/
+	stringNumberOfTickets := strconv.FormatUint(uint64(numberOfTickets), 10)
+	userBookingData := map[string]string{
+		"name":     clientName,
+		"lastName": clientLastName,
+		"quantity": stringNumberOfTickets,
+	}
+	return userBookingData
+}
+
+/** using and returning a structure */
+func GetBookingStruct() BookingData {
+	clientName, clientLastName, numberOfTickets := GetUserBookingData()
+
+	var bookingData = BookingData{
+		Name:     clientName,
+		LastName: clientLastName,
+		Quantity: numberOfTickets,
+	}
+
+	return bookingData
 }

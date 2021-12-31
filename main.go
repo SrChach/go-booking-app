@@ -6,39 +6,21 @@ import (
 )
 
 func main() {
-	/** Constants */
-	totalTickets := helpers.AVAILABLE_TICKETS
 
-	/** Variables */
-	var conferenceName string = "My Conference"
-
-	/** Self typed variables */
-	remainingTickets := 50
-
-	var bookings = []string{}
-
-	/** You can also print the Type of a variable
-	  fmt.Printf(
-	    "The type of conferenceName is %T, and remainingTickets is %T\n",
-	    conferenceName, remainingTickets,
-	  )
-	*/
+	var remainingTickets uint = 50
+	var bookings = make([]string, 0)
 
 	for {
-		fmt.Printf("Welcome to the %s booking application\n", conferenceName)
-		fmt.Printf(
-			"You can book tickets here. %d of %v tickets remaining\n",
-			remainingTickets, totalTickets,
-		)
+		helpers.PrintBookingInfo(remainingTickets)
 
-		clientName, clientLastName, ticketsNumber := helpers.GetUserBookingData()
+		booking := helpers.GetBookingStruct()
 
 		fmt.Printf(
 			"The client %s %s has reserved %d tickets\n",
-			clientName, clientLastName, ticketsNumber,
+			booking.Name, booking.LastName, booking.Quantity,
 		)
 
-		bookings = append(bookings, clientName)
+		bookings = append(bookings, booking.Name)
 		fmt.Printf("Total bookings %v\n", bookings)
 	}
 
